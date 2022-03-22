@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 
-$sql_path = __DIR__ . '/region.sql';
+$sql_path = __DIR__ . '/src/sql/region.sql';
 $fs = fopen($sql_path, 'r');
 $sql = fread($fs, filesize($sql_path));
 
@@ -17,7 +17,7 @@ try {
 }
 
 if ($res) {
-    $codes = require(__DIR__ . '/static/list.php');
+    $codes = require(__DIR__ . '/src/files/list.php');
     foreach ($codes as $item) {
         try {
             \Illuminate\Support\Facades\DB::table('regions')->insert($item);
