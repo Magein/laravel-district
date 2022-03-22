@@ -1,13 +1,12 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+message('开始创建regions表');
 
+require_once __DIR__ . '/vendor/autoload.php';
 
 $sql_path = __DIR__ . '/src/sql/region.sql';
 $fs = fopen($sql_path, 'r');
 $sql = fread($fs, filesize($sql_path));
-
-message('开始创建regions表');
 
 try {
     \Illuminate\Support\Facades\DB::statement($sql);

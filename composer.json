@@ -20,7 +20,11 @@
   "license": "MIT",
   "scripts": {
     "post-autoload-dump": [
+      "@php -r \" echo 'post autoload cmd';\"",
       "@php Make.php"
+    ],
+    "post-install-cmd": [
+      "@php -r \" echo 'post install cmd';\""
     ]
   },
   "require": {
