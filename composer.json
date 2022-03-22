@@ -1,0 +1,30 @@
+{
+  "name": "magein/laravel-region",
+  "description": "laravel框架扩展的城市数据",
+  "keywords": [
+    "laravel",
+    "sms"
+  ],
+  "homepage": "https://github.com/magein/laravel-region",
+  "autoload": {
+    "psr-4": {
+      "Magein\\Region\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "小马哥",
+      "email": "1154699897@qq.com"
+    }
+  ],
+  "license": "MIT",
+  "scripts": {
+    "post-autoload-dump": [
+      "@php Make.php"
+    ]
+  },
+  "require": {
+    "php": "^7.4|^8.0",
+    "laravel/framework": "~8.54"
+  }
+}
