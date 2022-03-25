@@ -1,7 +1,6 @@
 ### 简介
 
-> laravel项目中地区表
-
+> laravel项目中使用的地区表
 
 ### 安装
 
@@ -9,20 +8,34 @@
 composer magein/laravel-region:*@dev -vvv -o
 ```
 
+### 使用
+
+```php
+
+\Magein\District\District::getName('110108')
+\Magein\District\District::getName('110108', '110113', '110116')
+
+\Magein\District\District::getCode('')
+
+
+
+
+```
+
 ### 延伸
 
 > district、region、area、section、zone、belt、quarter与neighbourhood均含有“地区”之意
 
 district
-    
+
     多指由政府等机构出于行政管理等目的而明确划分的地区
 
-region 
-    
+region
+
     普通用词，常指地球上、大气中具有自然分界线的区域，特指按照气候、人体或其他特征鲜明、自成一体的地区
 
 area
-    
+
     普通用词，指整体中较大的，界线不分明的一部分
 
 section

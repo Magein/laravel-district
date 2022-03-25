@@ -1,9 +1,9 @@
 {
   "name": "magein/laravel-district",
-  "description": "laravel框架扩展的城市数据",
+  "description": "扩展laravel框架的行政区域划分数据",
   "keywords": [
     "laravel",
-    "sms"
+    "district"
   ],
   "homepage": "https://github.com/magein/laravel-district",
   "autoload": {
@@ -18,15 +18,6 @@
     }
   ],
   "license": "MIT",
-  "scripts": {
-    "post-autoload-dump": [
-      "@php -r \" echo 'post autoload cmd';\"",
-      "@php index.php"
-    ],
-    "post-install-cmd": [
-      "@php -r \" echo 'post install cmd';\""
-    ]
-  },
   "require": {
     "php": "^7.4|^8.0",
     "laravel/framework": "~8.54"
