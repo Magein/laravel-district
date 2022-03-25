@@ -5,7 +5,7 @@
 ### 安装
 
 ```
-composer magein/laravel-region:*@dev -vvv -o
+composer magein/laravel-district:*@dev -vvv -o
 ```
 
 ### 使用
