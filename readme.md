@@ -15,9 +15,15 @@ composer magein/laravel-region:*@dev -vvv -o
 \Magein\District\District::getName('110108')
 \Magein\District\District::getName('110108', '110113', '110116')
 
-\Magein\District\District::getCode('')
+\Magein\District\District::getCode('杭州','合肥')
+\Magein\District\District::getCode('安徽省','合肥','杭州')
 
 
+$address=\Magein\District\District::getAddress(['province_id' => 340000, 'city_id' => 340100, 'district_id' => 340103])
+$address=\Magein\District\District::getAddress([340000,340100,340103])
+
+echo $address->toString()
+echo $address->toString(' | ')
 
 
 ```

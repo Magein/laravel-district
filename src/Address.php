@@ -4,20 +4,23 @@ namespace Magein\District;
 
 class Address
 {
-    public $province = '';
+    public string $province = '';
 
-    public $city = '';
+    public string $city = '';
 
-    public $district = '';
+    public string $district = '';
 
-    public function toString($sp = ',')
+    public function toString($sp = ','): string
     {
-        $data = [
+        return implode($sp, $this->toArray());
+    }
+
+    public function toArray(): array
+    {
+        return [
             $this->province,
             $this->city,
             $this->district
         ];
-
-        return implode($sp, $data);
     }
 }
