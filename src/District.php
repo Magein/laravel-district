@@ -2,6 +2,8 @@
 
 namespace Magein\District;
 
+use Illuminate\Support\Facades\Redis;
+
 /**
  * @method static array getName(...$params)
  * @method static array getCode(...$params)
@@ -17,8 +19,10 @@ class District
         $name = lcfirst($name);
         try {
             $data = call_user_func_array([new static(), $name], $arguments);
+        } catch (\RedisException $exception) {
+            throw new \Exception('【District redis】' . $exception->getMessage());
         } catch (\Exception $exception) {
-            $data = null;
+            $data = [];
         }
 
         return $data;
@@ -26,11 +30,33 @@ class District
 
     protected function load($name)
     {
-        $path = __DIR__ . '/files/' . $name . '.php';
-        if (is_file($path)) {
-            return require($path);
+        $local = function () use ($name) {
+            $path = __DIR__ . '/files/' . $name . '.php';
+            if (is_file($path)) {
+                return require($path);
+            }
+            return [];
+        };
+
+        $redis = config('database.redis.district');
+        if (empty($redis)) {
+            return $local();
         }
-        return [];
+
+        $key = md5('district_' . $name);
+        $redis = Redis::connection('district');
+        if (empty($redis)) {
+            return [];
+        }
+        $data = $redis->client()->get($key);
+        if (empty($data)) {
+            $data = $local();
+            $redis->client()->set($key, json_encode($data));
+        } else {
+            $data = json_decode($data, true);
+        }
+
+        return $data;
     }
 
     /**

@@ -1,11 +1,37 @@
 ### 简介
 
-> laravel项目中使用的地区表
+laravel项目中使用的地区表
+
+数据来源:
+
+[Magein/china-district](https://github.com/Magein/china-district)
 
 ### 安装
 
 ```
 composer magein/laravel-district:*@dev -vvv -o
+```
+
+### 驱动
+
+> 默认使用的是文件驱动，即以src/files下的文件为准
+
+使用redis驱动，在config/database.php中的redis参数中新增，
+
+```php
+'redis'=>[
+    
+    // 此处省略其他配置
+
+    // 配置完成后会将src中的数据保存到redis中
+    'district' => [
+        'url' => env('REDIS_URL'),
+        'host' => env('REDIS_HOST', '127.0.0.1'),
+        'password' => env('REDIS_PASSWORD1', null),
+        'port' => env('REDIS_PORT', '6379'),
+        'database' => env('REDIS_CACHE_DB', '1'),
+    ]
+]
 ```
 
 ### 使用
@@ -36,27 +62,3 @@ echo $address->toString(' | ')
 
 
 ```
-
-### 延伸
-
-> district、region、area、section、zone、belt、quarter与neighbourhood均含有“地区”之意
-
-district
-
-    多指由政府等机构出于行政管理等目的而明确划分的地区
-
-region
-
-    普通用词，常指地球上、大气中具有自然分界线的区域，特指按照气候、人体或其他特征鲜明、自成一体的地区
-
-area
-
-    普通用词，指整体中较大的，界线不分明的一部分
-
-section
-
-    普通用词，指城市、国家或天然界线形成的地区
-
-zone
-
-    科技用词，指圆形或弧形地带，尤指地图上按温度划分的五个地带。用作一般意义时，也可指具有某种特征的其它地区
