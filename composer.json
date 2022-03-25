@@ -1,14 +1,14 @@
 {
-  "name": "magein/laravel-region",
+  "name": "magein/laravel-district",
   "description": "laravel框架扩展的城市数据",
   "keywords": [
     "laravel",
     "sms"
   ],
-  "homepage": "https://github.com/magein/laravel-region",
+  "homepage": "https://github.com/magein/laravel-district",
   "autoload": {
     "psr-4": {
-      "Magein\\Region\\": "src/"
+      "Magein\\District\\": "src/"
     }
   },
   "authors": [
@@ -21,7 +21,7 @@
   "scripts": {
     "post-autoload-dump": [
       "@php -r \" echo 'post autoload cmd';\"",
-      "@php Make.php"
+      "@php index.php"
     ],
     "post-install-cmd": [
       "@php -r \" echo 'post install cmd';\""

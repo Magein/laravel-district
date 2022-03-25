@@ -1,6 +1,6 @@
 CREATE TABLE `regions`
 (
-    `id`          int(11) NOT NULL AUTO_INCREMENT,
+    `id`          char(6) NOT NULL,
     `parent_id` char(6)      NOT NULL DEFAULT '0',
     `name`        varchar(60)  NOT NULL,
     `postal` char(6)      NOT NULL DEFAULT '',
