@@ -10,20 +10,29 @@ composer magein/laravel-district:*@dev -vvv -o
 
 ### 使用
 
+> 静态方法返回的是数组，并没有去重复，去除空值
+
 ```php
 
+// 根据行政区划代码获取名称
 \Magein\District\District::getName('110108')
 \Magein\District\District::getName('110108', '110113', '110116')
 
+// 根据名称获取行政区划代码
 \Magein\District\District::getCode('杭州','合肥')
 \Magein\District\District::getCode('安徽省','合肥','杭州')
 
-
+// 获取地址信息
 $address=\Magein\District\District::getAddress(['province_id' => 340000, 'city_id' => 340100, 'district_id' => 340103])
 $address=\Magein\District\District::getAddress([340000,340100,340103])
-
 echo $address->toString()
 echo $address->toString(' | ')
+
+// 获取邮政编码
+\Magein\District\District::getPostal('杭州','合肥','330200')
+
+// 获取固定电话区号
+\Magein\District\District::getTel('杭州','合肥','330200')
 
 
 ```

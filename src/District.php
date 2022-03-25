@@ -3,8 +3,10 @@
 namespace Magein\District;
 
 /**
- * @method static getName(...$params)
- * @method static getCode(...$params)
+ * @method static array getName(...$params)
+ * @method static array getCode(...$params)
+ * @method static array getPostal(...$params)
+ * @method static array getTel(...$params)
  * @method static Address getAddress(array $data, $only_district = true)
  */
 class District
@@ -22,9 +24,40 @@ class District
         return $data;
     }
 
+    protected function load($name)
+    {
+        $path = __DIR__ . '/files/' . $name . '.php';
+        if (is_file($path)) {
+            return require($path);
+        }
+        return [];
+    }
+
+    /**
+     * 获取行政区划代码
+     * @return array|mixed
+     */
     public function codes()
     {
-        return require(__DIR__ . '/files/codes.php');
+        return $this->load('codes');
+    }
+
+    /**
+     * 获取邮政编码
+     * @return array|mixed
+     */
+    public function postals()
+    {
+        return $this->load('postals');
+    }
+
+    /**
+     * 获取区号
+     * @return array|mixed
+     */
+    public function tels()
+    {
+        return $this->load('tels');
     }
 
     protected function name(...$arguments): array
@@ -70,5 +103,34 @@ class District
         $address->district = $codes[$district_id] ?? '';
 
         return $address;
+    }
+
+    protected function postal(...$arguments): array
+    {
+        return $this->extract('postals', ...$arguments);
+    }
+
+    protected function tel(...$arguments): array
+    {
+        return $this->extract('tels', ...$arguments);
+    }
+
+    protected function extract($name, ...$arguments): array
+    {
+        $data = $this->load($name);
+        $res = [];
+        foreach ($arguments as $item) {
+            if (preg_match('/^[0-9]{6}$/', $item)) {
+                $res[] = $data[$item];
+            } else {
+                $code = $this->code($item)[0] ?? '';
+                if ($code) {
+                    $res[] = $data[$code];
+                } else {
+                    $res[] = '';
+                }
+            }
+        }
+        return $res;
     }
 }

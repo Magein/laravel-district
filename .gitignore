@@ -2,4 +2,4 @@
 vendor/*
 .idea
 .git
-./index.php
+index.php
