@@ -44,6 +44,8 @@ composer magein/laravel-district:*@dev -vvv -o
 \Magein\District\District::getName('110108')
 \Magein\District\District::getName('110108', '110113', '110116')
 
+// 获取所有的行政区划代码
+\Magein\District\District::getCodes()
 // 根据名称获取行政区划代码
 \Magein\District\District::getCode('杭州','合肥')
 \Magein\District\District::getCode('安徽省','合肥','杭州')
@@ -55,9 +57,11 @@ echo $address->toString()
 echo $address->toString(' | ')
 
 // 获取邮政编码
+\Magein\District\District::getPostals()
 \Magein\District\District::getPostal('杭州','合肥','330200')
 
 // 获取固定电话区号
+\Magein\District\District::getTels()
 \Magein\District\District::getTel('杭州','合肥','330200')
 
 
